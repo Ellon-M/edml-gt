@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import Layout from "../../../components/AdminLayout";
+import Layout from "../../../components/PartnerLayout";
 import Card from "../../../components/Card";
 import useRequireRole from "@/hooks/useRequireRole";
 import Link from "next/link";
