@@ -1,0 +1,128 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PARTNER
+  ADMIN
+  SUPERUSER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String? // for credential login (nullable for OAuth-only users)
+  role          Role      @default(PARTNER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  phone       String? // full phone number or saved as "+<countryCode><number>"
+  country     String? // country name or ISO code
+  dob         DateTime? // date of birth
+  companyName String? // previously address replaced with companyName
+
+  // Bank / payout details (optional)
+  bankName          String? // e.g. "NCBA Bank Kenya PLC"
+  bankBranchCode    String? // e.g. "07101"
+  bankAccountNumber String?
+  bankAccountName   String? // account holder name
+  bankCurrency      String? // e.g. "KES"
+  bankVerified      Boolean? @default(false) // whether payouts set up & verified
+
+  // Relations for NextAuth adapter (Session/Account models defined below)
+  properties Property[]
+  accounts   Account[]
+  sessions   Session[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum PropertyStatus {
+  draft
+  published
+  suspended
+}
+
+
+model Property {
+  id            String    @id @default(cuid())
+  ownerId       String
+  owner         User      @relation(fields: [ownerId], references: [id])
+  title         String
+  slug          String?   @unique
+  description   String?
+  address       String?
+  city          String?
+  country       String?
+  price         Int
+  rooms         Int?
+  bathrooms     Int?
+  active        Boolean   @default(true)
+  status        PropertyStatus @default(draft)
+  latitude      Float?
+  longitude     Float?
+  amenities     String[]  @default([])
+  facilities    String[]  @default([])
+  featured      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  images        PropertyImage[]
+
+  @@index([ownerId])
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+  url        String
+  alt        String?
+  order      Int      @default(0)
+  isThumb    Boolean  @default(false)
+}

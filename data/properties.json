@@ -1,0 +1,173 @@
+[
+  {
+    "id": "prop-0",
+    "slug": "cozy-apartment-1",
+    "title": "Cozy Apartment 1",
+    "location": "Nairobi, Kenya",
+    "pricePerNight": 50,
+    "currency": "USD",
+    "rating": 8,
+    "amenities": ["WiFi", "Pool", "Air Conditioning", "Parking"],
+    "rooms": "1 Bedroom",
+    "type": "Apartment",
+    "images": [
+      "/images/prop1-1.jpg",
+      "/images/prop1-2.jpg",
+      "/images/prop1-3.jpg"
+    ],
+    "description": "A bright and airy 1-bedroom apartment in the heart of Nairobi. Modern finishes, fast WiFi, and walking distance to local attractions."
+  },
+  {
+    "id": "prop-1",
+    "slug": "sunny-villa-2",
+    "title": "Sunny Villa 2",
+    "location": "Mombasa, Kenya",
+    "pricePerNight": 120,
+    "currency": "USD",
+    "rating": 9,
+    "amenities": ["Pool", "Garden", "WiFi", "Kitchen"],
+    "rooms": "4 Bedrooms",
+    "type": "Villa",
+    "images": [
+      "/prop-2-1.jpg",
+      "/prop-2-2.jpg",
+      "/prop-2-3.jpg",
+      "/prop-2-4.jpg",
+      "/prop-2-5.jpg",
+      "/prop-2-6.jpg",
+      "/prop-2-7.jpg",
+      "/prop-2-8.jpg",
+      "/prop-2-9.jpg",
+      "/prop-2-10.jpg",
+      "/prop-2-11.jpg",
+      "/prop-2-12.jpg"
+    ],
+    "description": "Modern Amenities: Guests can enjoy air-conditioning, a balcony, a fully equipped kitchen, a private pool, and a TV. Additional facilities include a elevator, housekeeping, laundry, picnic area, family rooms, full-day security, bicycle parking, car hire, and luggage storage. Convenient Location: Located 8.1 mi from Moi International Airport, the apartment is a 15-minute walk from Nyali Beach. Nearby attractions include Mamba Village Crocodile Farm (1.1 mi), Nakumatt Cinemax (1.1 mi), and Nyali Golf Course (1.2 mi). Escape to this luxurious 4-bedroom villa overlooking the Indian Ocean. Private pool, lush gardens, and fully equipped kitchen."
+  },
+  {
+    "id": "prop-2",
+    "slug": "modern-loft-3",
+    "title": "Modern Loft 3",
+    "location": "Nairobi, Kenya",
+    "pricePerNight": 75,
+    "currency": "USD",
+    "rating": 7.5,
+    "amenities": ["WiFi", "Gym", "Parking"],
+    "rooms": "Studio",
+    "type": "Loft",
+    "images": [
+      "/images/prop3-1.jpg",
+      "/images/prop3-2.jpg",
+      "/images/prop3-3.jpg"
+    ],
+    "description": "Stylish studio loft in a trendy neighborhood. Close to cafes, shops, and public transport. Perfect for solo travelers or couples."
+  },
+  {
+    "id": "prop-3",
+    "slug": "luxury-apartment-4",
+    "title": "Luxury Apartment 4",
+    "location": "Nairobi, Kenya",
+    "pricePerNight": 200,
+    "currency": "USD",
+    "rating": 6,
+    "amenities": ["WiFi", "Gym", "Pool", "Parking"],
+    "rooms": "2 Bedrooms",
+    "type": "Apartment",
+    "images": [
+      "/images/prop4-1.jpg",
+      "/images/prop4-2.jpg",
+      "/images/prop4-3.jpg"
+    ],
+    "description": "Experience luxury living in this spacious 2-bedroom apartment. High-end finishes, panoramic city views, and top-notch amenities."
+  },
+  {
+    "id": "prop-4",
+    "slug": "beachfront-bungalow-5",
+    "title": "Beachfront Bungalow 5",
+    "location": "Diani, Kenya",
+    "pricePerNight": 150,
+    "currency": "USD",
+    "rating": 9.5,
+    "amenities": ["WiFi", "Beach Access", "Kitchen"],
+    "rooms": "3 Bedrooms",
+    "type": "Bungalow",
+    "images": [
+      "/images/prop5-1.jpg",
+      "/images/prop5-2.jpg",
+      "/images/prop5-3.jpg"
+    ],
+    "description": "Relax in this charming beachfront bungalow with stunning ocean views. Perfect for families or groups looking for a tropical getaway."
+  },
+  {
+    "id": "prop-5",
+    "slug": "rustic-cottage-6",
+    "title": "Rustic Cottage 6",
+    "location": "Naivasha, Kenya",
+    "pricePerNight": 80,
+    "currency": "USD",
+    "rating": 5.5,
+    "amenities": ["WiFi", "Garden", "Parking"],
+    "rooms": "2 Bedrooms",
+    "type": "Cottage",
+    "images": [
+      "/images/prop6-1.jpg",
+      "/images/prop6-2.jpg",
+      "/images/prop6-3.jpg"
+    ],
+    "description": "A cozy rustic cottage surrounded by nature. Ideal for a peaceful retreat with hiking trails and scenic views nearby."
+  },
+  {
+    "id": "prop-6",
+    "slug": "city-center-apartment-7",
+    "title": "City Center Apartment 7",
+    "location": "Nairobi, Kenya",
+    "pricePerNight": 90,
+    "currency": "USD",
+    "rating": 8,
+    "amenities": ["WiFi", "Gym", "Parking"],
+    "rooms": "1 Bedroom",
+    "type": "Apartment",
+    "images": [
+      "/images/prop7-1.jpg",
+      "/images/prop7-2.jpg",
+      "/images/prop7-3.jpg"
+    ],
+    "description": "Modern apartment in the city center with easy access to public transport, restaurants, and shopping. Perfect for business travelers."
+  },
+  {
+    "id": "prop-7",
+    "slug": "seaside-villa-8",
+    "title": "Seaside Villa 8",
+    "location": "Malindi, Kenya",
+    "pricePerNight": 250,
+    "currency": "USD",
+    "rating": 9.8,
+    "amenities": ["WiFi", "Pool", "Beach Access"],
+    "rooms": "4 Bedrooms",
+    "type": "Villa",
+    "images": [
+      "/images/prop8-1.jpg",
+      "/images/prop8-2.jpg",
+      "/images/prop8-3.jpg"
+    ],
+    "description": "Luxurious seaside villa with private pool and direct beach access. Perfect for large families or groups looking for a lavish escape."
+  },
+  {
+    "id": "prop-8",
+    "slug": "charming-townhouse-9",
+    "title": "Charming Townhouse 9",
+    "location": "Karen, Kenya",
+    "pricePerNight": 110,
+    "currency": "USD",
+    "rating": 8.7,
+    "amenities": ["WiFi", "Garden", "Parking"],
+    "rooms": "3 Bedrooms",
+    "type": "Townhouse",
+    "images": [
+      "/images/prop9-1.jpg",
+      "/images/prop9-2.jpg",
+      "/images/prop9-3.jpg"
+    ],
+    "description": "A charming townhouse in a quiet neighborhood. Close to parks, schools, and local shops. Ideal for families or long-term stays."
+  }
+]
