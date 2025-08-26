@@ -76,7 +76,7 @@ export default function LandingHero() {
       </div>
 
       {/* Search Bar */}
-      <div className="relative flex justify-center mt-[-80px] md:mt-[-40px]">
+      <div className="relative flex justify-center mt-[-50px] md:mt-[-40px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
