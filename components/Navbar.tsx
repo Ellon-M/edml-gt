@@ -116,13 +116,10 @@ function NavLinks({ isMobile }: { isMobile: boolean }) {
         {isMobile && (
           <>
             <NavigationMenuItem>
-              <NavItem href="/faqs" icon={HelpCircle} label="FAQs" isMobile={isMobile} />
+              <NavItem href="/help-center" icon={HelpCircle} label="FAQs" isMobile={isMobile} />
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavItem href="/blog" icon={Book} label="Blog" isMobile={isMobile} />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavItem href="/support" icon={LifeBuoy} label="Support" isMobile={isMobile} />
             </NavigationMenuItem>
           </>
         )}

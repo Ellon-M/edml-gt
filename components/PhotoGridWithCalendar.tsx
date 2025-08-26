@@ -74,7 +74,7 @@ export default function PhotoGridWithCalendar({
 
         <div className="lg:col-span-1 flex flex-col gap-4">
           {/* Map + calendar */}
-          <div className="w-full h-[420px] rounded-lg overflow-hidden border border-gray-200">
+          <div className="w-full hidden lg:block h-[420px] rounded-lg overflow-hidden border border-gray-200">
             {latitude && longitude && MAP_KEY ? (
               // clickable: opens Google Maps search at lat,lng in a new tab
               <a
