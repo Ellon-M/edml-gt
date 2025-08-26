@@ -146,10 +146,10 @@ export default async function PartnerDashboard() {
   });
 
   return (
-    <Layout>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+ <Layout>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Analytics column */}
-        <div className="col-span-1 space-y-6">
+        <div className="col-span-1 space-y-6 min-w-0">
           <Card className="p-4" title="Overview" subtitle="Key metrics for this account">
             <div className="grid grid-cols-2 gap-3">
               <StatsCard icon="home" label="Total properties" value={String(totalProperties)} />
@@ -163,7 +163,11 @@ export default async function PartnerDashboard() {
                 <div className="text-sm font-medium">Occupancy</div>
                 <div className="text-sm font-semibold">{occupancyRate}%</div>
               </div>
-              <OccupancyGauge percent={occupancyRate} size={120} />
+
+              {/* center gauge on small screens, align left on larger */}
+              <div className="flex justify-center md:justify-start">
+                <OccupancyGauge percent={occupancyRate} size={120} />
+              </div>
             </div>
           </Card>
 
@@ -177,7 +181,7 @@ export default async function PartnerDashboard() {
                 <div className="text-sm text-gray-500">Trend (last 6 months)</div>
               </div>
 
-              <div style={{ height: 140 }}>
+              <div className="h-[140px]">
                 <RevenueChart data={revenueSeries} />
               </div>
             </div>
@@ -185,20 +189,24 @@ export default async function PartnerDashboard() {
         </div>
 
         {/* Properties / main column */}
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-2 space-y-6 min-w-0">
           <Card title="Property performance">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Your properties</h3>
               <Link href="/dashboard/properties/new">
-                <span className="inline-flex items-center px-3 py-2 rounded-md text-white font-medium" style={{ backgroundColor: "#800000" }}>
+                <span className="inline-flex items-center px-3 py-2 rounded-md text-white font-medium bg-[#800000]">
                   Create listing
                 </span>
               </Link>
             </div>
 
-            <div className="grid gap-4">
+            <div className="flex flex-col gap-4 min-w-0">
               {mappedProperties.length ? (
-                mappedProperties.map((p) => <ListPropertyCard key={p.id} p={p} />)
+                mappedProperties.map((p) => (
+                  <div key={p.id} className="min-w-0">
+                    <ListPropertyCard p={p} />
+                  </div>
+                ))
               ) : (
                 <div className="text-sm text-gray-500">No properties found. Create your first listing.</div>
               )}
