@@ -203,7 +203,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-8 text-center text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} YourCompany, Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} Edmor Listings, Inc. All rights reserved.
       </div>
     </footer>
   );

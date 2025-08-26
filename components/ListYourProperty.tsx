@@ -36,7 +36,7 @@ export default function ListYourProperty() {
           viewport={{ once: true }}
           className="mt-6"
         >
-          <Link href="/signup">
+          <Link href="/sign-up">
             <button className="bg-white text-[#800000] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition">
               List Your Property
             </button>
