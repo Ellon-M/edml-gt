@@ -1,6 +1,7 @@
+// components/LandingHero.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Blurhash } from "react-blurhash";
 import { Search, Calendar, Users } from "lucide-react";
@@ -12,23 +13,20 @@ import { useRouter } from "next/navigation";
 export default function LandingHero() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState(""); // you can change to structured start/end
+  const [dates, setDates] = useState("");
   const [guests, setGuests] = useState("");
   const router = useRouter();
 
   const onSearch = () => {
     const params = new URLSearchParams();
     if (destination.trim()) params.set("q", destination.trim());
-    if (dates.trim()) {
-      // if you store as "start - end", you might parse or send as `dates=...`
-      params.set("dates", dates.trim());
-    }
+    if (dates.trim()) params.set("dates", dates.trim());
     if (guests.trim()) params.set("guests", guests.trim());
     router.push(`/properties?${params.toString()}`);
   };
 
   return (
-    <section className="relative w-full h-[50vh] pt-16">
+    <section className="relative w-full h-[50vh] pt-16 pb-32 md:pb-20">
       {/* Background Image */}
       <div className="absolute inset-0">
         {!isLoaded && (
@@ -45,10 +43,10 @@ export default function LandingHero() {
         <Image
           src="/bnb-cover6.jpg"
           alt="Landing Cover"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
           placeholder="empty"
-          onLoad={() => setIsLoaded(true)}
+          onLoadingComplete={() => setIsLoaded(true)}
           priority
           quality={90}
           className="brightness-55"
@@ -75,8 +73,8 @@ export default function LandingHero() {
         </motion.p>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative flex justify-center mt-[-80px] md:mt-[-40px]">
+      {/* Search Bar — overlapping card */}
+      <div className="relative flex justify-center -mt-20 md:-mt-10 z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
