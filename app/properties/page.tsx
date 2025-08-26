@@ -91,7 +91,7 @@ export default async function ListingsPage({ searchParams }: { searchParams?: Se
     take: perPage,
   });
 
-  const mapped = props.map((p) => {
+  const mapped = props.map((p: any) => {
     // reorder images so thumbnail (isThumb) is first
     const thumbObj = (p.images || []).find((img: any) => img.isThumb);
     // fallback to first image object

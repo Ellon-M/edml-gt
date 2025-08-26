@@ -1,5 +1,5 @@
 import LandingHero from "@/components/LandingHero";
-import PropertyDisplay from "@/components/PropertyDisplay";
+import FeaturedProperties from "@/components/FeaturedProperties";
 import ListYourProperty from "@/components/ListYourProperty";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Pricing from "@/components/Pricing";
@@ -12,7 +12,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <LandingHero />
-      <PropertyDisplay />
+    <FeaturedProperties />
       <ListYourProperty />
       <WhyChooseUs />
       <Pricing />
