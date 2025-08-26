@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireAdminServer } from "@/lib/admin";
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const session = await requireAdminServer();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

@@ -1,7 +1,7 @@
 // app/reset-password/page.tsx
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import ResetPasswordForm from "@/components/ResetPasswordForm";
 
@@ -16,7 +16,9 @@ export default function ResetPasswordPage() {
           </p>
         </div>
 
-        <ResetPasswordForm />
+        <Suspense fallback={<div className="py-8 text-center">Loading form…</div>}>
+          <ResetPasswordForm />
+        </Suspense>
 
         <div className="mt-6 text-center text-sm">
           <Link href="/login" className="text-[#800000] font-semibold hover:underline">
