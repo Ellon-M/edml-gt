@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import Layout from "@/components/AdminLayout";
+import Layout from "@/components/PartnerLayout";
 import PropertyForm from "@/components/PropertyForm";
 import { useRouter } from "next/navigation";
 import useRequireRole from "@/hooks/useRequireRole";

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useParams } from "next/navigation";
 import React from 'react';
-import Layout from '@/components/AdminLayout';
+import Layout from '@/components/PartnerLayout';
 import { dummyProperties } from '@/data/dummy';
 import Card from '@/components/Card';
 import useRequireRole from "@/hooks/useRequireRole";

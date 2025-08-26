@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Layout from "../../../components/AdminLayout";
+import Layout from "../../../components/PartnerLayout";
 import ListPropertyCard from "../../../components/ListPropertyCard";
 import Link from "next/link";
 import useRequireRole from "@/hooks/useRequireRole";

@@ -2,7 +2,7 @@
 "use client";
 
 import React from 'react';
-import Layout from '../../../components/AdminLayout';
+import Layout from '../../../components/PartnerLayout';
 import FinanceBankDetails from '../../../components/FinanceBankDetails';
 import useRequireRole from "@/hooks/useRequireRole";
 

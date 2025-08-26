@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Layout from "@/components/AdminLayout";
+import Layout from "@/components/PartnerLayout";
 import PropertyForm from "@/components/PropertyForm";
 import useRequireRole from "@/hooks/useRequireRole";
 
