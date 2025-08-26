@@ -1,4 +1,3 @@
-// components/ListingsClient.tsx
 "use client";
 
 import React, { useMemo, useState } from "react";
@@ -46,6 +45,9 @@ export default function ListingsClient({
   const [selectedRating, setSelectedRating] = useState<number | undefined>();
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
+
+  // mobile filter drawer visibility
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const handleToggleAmenity = (amenity: string) => {
     setAmenities((prev) => (prev.includes(amenity) ? prev.filter((a) => a !== amenity) : [...prev, amenity]));
@@ -110,36 +112,118 @@ export default function ListingsClient({
   }, [initialProperties, searchQuery, amenities, selectedRating, selectedTypes, selectedRooms, sortBy]);
 
   return (
-    <div className="flex space-x-6">
-      <FilterSidebar
-        amenities={allAmenities}
-        selectedAmenities={amenities}
-        onToggleAmenity={handleToggleAmenity}
-        dateRange={dateRange}
-        onDateChange={handleDateChange}
-        ratings={ratings}
-        selectedRating={selectedRating}
-        onSelectRating={handleSelectRating}
-        propertyTypes={allTypes}
-        selectedTypes={selectedTypes}
-        onToggleType={handleToggleType}
-        rooms={allRooms}
-        selectedRooms={selectedRooms}
-        onToggleRoom={handleToggleRoom}
-      />
+    <div className="md:flex md:space-x-6">
+      {/* Sidebar (desktop) */}
+      <div className="hidden md:block md:flex-shrink-0">
+        <FilterSidebar
+          amenities={allAmenities}
+          selectedAmenities={amenities}
+          onToggleAmenity={handleToggleAmenity}
+          dateRange={dateRange}
+          onDateChange={handleDateChange}
+          ratings={ratings}
+          selectedRating={selectedRating}
+          onSelectRating={handleSelectRating}
+          propertyTypes={allTypes}
+          selectedTypes={selectedTypes}
+          onToggleType={handleToggleType}
+          rooms={allRooms}
+          selectedRooms={selectedRooms}
+          onToggleRoom={handleToggleRoom}
+        />
+      </div>
 
+      {/* Main column */}
       <div className="flex-1">
-        <div className="mb-4">
-          {/* pass current searchQuery and onSearch that updates URL */}
-          <SearchBar placeholder="Search properties..." initialValue={searchQuery} onSearch={(v) => { setSearchQuery(v); onSearch(v); }} />
-          <div className="mt-3 flex items-center justify-between gap-4">
-            <div></div>
+        {/* Mobile filter/search bar row */}
+        <div className="mb-4 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setMobileFiltersOpen(true)}
+            className="md:hidden inline-flex items-center gap-2 px-3 py-2 border rounded text-sm"
+            aria-expanded={mobileFiltersOpen}
+          >
+            Filters
+          </button>
+
+          <div className="flex-1">
+            <SearchBar
+              placeholder="Search properties..."
+              initialValue={searchQuery}
+              onSearch={(v) => {
+                setSearchQuery(v);
+                onSearch(v);
+              }}
+            />
+          </div>
+
+          <div className="hidden sm:flex items-center">
             <SortingDropdown options={sortingOptions} selected={sortBy} onChange={setSortBy} />
           </div>
         </div>
 
+        {/* On small screens show sorting underneath search for accessibility */}
+        <div className="block sm:hidden mb-4">
+          <SortingDropdown options={sortingOptions} selected={sortBy} onChange={setSortBy} />
+        </div>
+
         <PropertyGrid properties={filtered} />
       </div>
+
+      {/* Mobile filter slide-over */}
+      {mobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* overlay */}
+          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileFiltersOpen(false)} />
+
+          {/* panel */}
+          <div className="relative w-full max-w-xs bg-white h-full shadow-xl p-4 overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Filters</h3>
+              <button onClick={() => setMobileFiltersOpen(false)} className="px-2 py-1 text-sm">Close</button>
+            </div>
+
+            <FilterSidebar
+              amenities={allAmenities}
+              selectedAmenities={amenities}
+              onToggleAmenity={handleToggleAmenity}
+              dateRange={dateRange}
+              onDateChange={handleDateChange}
+              ratings={ratings}
+              selectedRating={selectedRating}
+              onSelectRating={handleSelectRating}
+              propertyTypes={allTypes}
+              selectedTypes={selectedTypes}
+              onToggleType={handleToggleType}
+              rooms={allRooms}
+              selectedRooms={selectedRooms}
+              onToggleRoom={handleToggleRoom}
+            />
+
+            <div className="mt-4 flex gap-2">
+              <button
+                onClick={() => setMobileFiltersOpen(false)}
+                className="flex-1 px-3 py-2 border rounded"
+              >
+                Apply
+              </button>
+              <button
+                onClick={() => {
+                  // reset mobile filters quickly (you can enhance this to preserve previous state)
+                  setAmenities([]);
+                  setSelectedRating(undefined);
+                  setSelectedTypes([]);
+                  setSelectedRooms([]);
+                  setDateRange({});
+                }}
+                className="flex-1 px-3 py-2 border rounded text-sm"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
