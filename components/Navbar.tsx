@@ -13,7 +13,6 @@ import {
   PlusCircle,
   HelpCircle,
   Book,
-  LifeBuoy,
   Grid,
   LogOut,
   User,
@@ -49,20 +48,34 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right: actions (desktop) */}
+        {/* Right: actions (desktop & mobile) */}
         <div className="flex items-center gap-3">
           {/* If loading session, small skeleton */}
           {status === "loading" ? (
-            <div className="hidden md:block w-28 h-10 rounded-full bg-gray-100 animate-pulse" />
+            // visible on all sizes (small visual indicator)
+            <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse" />
           ) : session?.user ? (
+            // show avatar + dropdown on all sizes (UserMenu handles small screen display)
             <UserMenu session={session} />
           ) : (
-            <Link
-              href="/login"
-              className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#800000] text-white font-semibold hover:brightness-95"
-            >
-              <PlusCircle size={16} /> <span>Login</span>
-            </Link>
+            // Signed-out UI: desktop "Login" + mobile compact login button
+            <>
+              <Link
+                href="/login"
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#800000] text-white font-semibold hover:brightness-95"
+              >
+                <PlusCircle size={16} /> <span>Login</span>
+              </Link>
+
+              {/* Mobile-friendly login button (visible only on small screens) */}
+              <Link
+                href="/login"
+                className="md:hidden inline-flex items-center justify-center p-2 rounded-full bg-[#800000] text-white"
+                aria-label="Login"
+              >
+                <PlusCircle size={16} />
+              </Link>
+            </>
           )}
 
           {/* Mobile Menu Button */}
@@ -90,6 +103,44 @@ export default function Navbar() {
               <NavigationMenu>
                 <NavLinks isMobile={true} />
               </NavigationMenu>
+
+              {/* Mobile auth area */}
+              <div className="mt-6 border-t border-white/20 pt-4">
+                {status === "loading" ? (
+                  <div className="w-full h-8 rounded bg-white/10 animate-pulse" />
+                ) : session?.user ? (
+                  // If authenticated, show quick account links and logout
+                  <div className="flex flex-col gap-2">
+                    <MenuLink href="/dashboard" icon={Grid} label="Partner dashboard" onClick={() => setIsOpen(false)} white />
+                    <MenuLink href="/dashboard/properties" icon={FileText} label="My properties" onClick={() => setIsOpen(false)} white />
+                    <MenuLink href="/dashboard/reservations" icon={Calendar} label="My reservations" onClick={() => setIsOpen(false)} white />
+                    <MenuLink href="/dashboard/reviews" icon={Heart} label="My reviews" onClick={() => setIsOpen(false)} white />
+                    <MenuLink href="/account" icon={User} label="Account" onClick={() => setIsOpen(false)} white />
+
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        signOut({ callbackUrl: "/" });
+                      }}
+                      className="mt-2 w-full inline-flex items-center gap-2 px-3 py-2 rounded text-sm bg-white text-[#800000] justify-center font-medium"
+                    >
+                      <LogOut size={16} /> Logout
+                    </button>
+                  </div>
+                ) : (
+                  // Signed-out => big login CTA
+                  <div>
+                    <Link
+                      href="/login"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full inline-flex items-center justify-center px-4 py-2 rounded bg-white text-[#800000] font-semibold"
+                    >
+                      <PlusCircle size={16} className="mr-2" />
+                      Login
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -186,7 +237,7 @@ function UserMenu({ session }: { session: any }) {
         {/* name (hidden on small screens) */}
         <div className="hidden sm:flex flex-col items-start leading-tight">
           <span className="text-sm font-medium text-gray-800">{name}</span>
-          <span className="text-xs text-gray-500">{email}</span>
+          <span className="text-xs text-gray-500 truncate">{email}</span>
         </div>
       </button>
 
@@ -239,7 +290,16 @@ function UserMenu({ session }: { session: any }) {
 }
 
 /* small helper for menu links inside dropdown */
-function MenuLink({ href, icon: Icon, label, onClick }: { href: string; icon: any; label: string; onClick?: () => void; }) {
+function MenuLink({ href, icon: Icon, label, onClick, white }: { href: string; icon: any; label: string; onClick?: () => void; white?: boolean }) {
+  // `white` controls styling when used inside the mobile dark panel
+  if (white) {
+    return (
+      <Link href={href} onClick={onClick} className="flex items-center gap-3 px-3 py-2 text-sm text-white hover:bg-white/10 rounded">
+        <Icon size={16} className="text-white" /> <span className="text-white">{label}</span>
+      </Link>
+    );
+  }
+
   return (
     <Link href={href} onClick={onClick} className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-50">
       <Icon size={16} className="text-gray-600" /> <span className="text-gray-800">{label}</span>
