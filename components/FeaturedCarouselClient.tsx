@@ -124,7 +124,7 @@ export default function FeaturedCarouselClient({ properties }: { properties: Fea
                       </div>
 
                       <div className="text-right">
-                        <div className="text-lg font-bold">KSh {property.price.toLocaleString()}</div>
+                        <div className="text-lg font-bold">$ {property.price.toLocaleString()}</div>
                         <div className="text-xs text-gray-500">/ night</div>
                       </div>
                     </div>
