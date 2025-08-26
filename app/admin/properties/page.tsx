@@ -5,11 +5,12 @@ import { requireAdminServer } from "@/lib/admin";
 import AdminLayout from "@/components/AdminLayout";
 import AdminPropertiesTable from "@/components/AdminPropertiesTable";
 
-export default async function AdminPropertiesPage({ searchParams }: { searchParams?: Record<string, string> }) {
+export default async function AdminPropertiesPage({ searchParams }: any = {}) {
   const session = await requireAdminServer();
   if (!session) return <div className="p-8">Unauthorized</div>;
 
-  const filter = searchParams?.filter ?? "";
+  const rawFilter = searchParams?.filter;
+  const filter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter ?? "";
   const where: any = {};
   if (filter === "featured") where.featured = true;
 
