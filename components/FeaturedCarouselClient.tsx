@@ -49,7 +49,7 @@ export default function FeaturedCarouselClient({ properties }: { properties: Fea
 
   return (
     <motion.section
-  className="w-full mt-8 md:mt-16 py-12 md:py-8 px-6 md:px-12"
+  className="w-full mt-[150px] md:mt-12 py-12 md:py-8 px-6 md:px-12"
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, ease: "easeOut" }}
